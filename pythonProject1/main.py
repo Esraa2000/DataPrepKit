@@ -2,6 +2,23 @@ import unittest
 import pandas as pd
 from data_io import read_csv
 
+
+
+def read_data():
+  filepath = input("Enter the data file path: ")
+  print(filepath)
+  extension = filepath.split(".")[-1].lower()
+  if extension == "csv":
+    return pd.read_csv(filepath)
+  elif extension == "xlsx":
+    return pd.read_excel(filepath)
+  elif extension == "json":
+    return pd.read_json(filepath)
+  else:
+    raise ValueError(f"Unsupported file format: {extension}")
+
+
+
 class TestDataIO(unittest.TestCase):
 
   def test_read_csv_success(self):
@@ -12,5 +29,4 @@ class TestDataIO(unittest.TestCase):
     with self.assertRaises(FileNotFoundError):
       read_csv("non-existent_file.csv")
 
-if __name__ == "__main__":
-  unittest.main()
+
