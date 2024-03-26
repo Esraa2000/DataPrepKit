@@ -1,4 +1,5 @@
 import unittest
+import pandas as pd
 from data_io import read_csv
 
 class TestDataIO(unittest.TestCase):
